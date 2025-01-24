@@ -18,6 +18,7 @@ mixin ChewieFactory on WidgetFactory {
     required bool loop,
     String? posterUrl,
     double? width,
+    Map<String, String>? httpHeaders,
   }) {
     final dimensOk = height != null && height > 0 && width != null && width > 0;
     final poster = posterUrl != null
@@ -35,6 +36,7 @@ mixin ChewieFactory on WidgetFactory {
           onLoadingBuilder(context, tree, null, url) ?? widget0,
       loop: loop,
       poster: poster,
+      httpHeaders: httpHeaders,
     );
   }
 

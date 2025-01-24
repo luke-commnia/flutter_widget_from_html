@@ -45,6 +45,8 @@ class VideoPlayer extends StatefulWidget {
   /// The widget to be shown before video is loaded.
   final Widget? poster;
 
+  final Map<String, String>? httpHeaders;
+
   /// Creates a player.
   const VideoPlayer(
     this.url, {
@@ -57,6 +59,7 @@ class VideoPlayer extends StatefulWidget {
     this.loadingBuilder,
     this.loop = false,
     this.poster,
+    this.httpHeaders,
   });
 
   @override
@@ -118,7 +121,7 @@ class _VideoPlayerState extends State<VideoPlayer> {
   Future<void> _initControllers() async {
     // TODO: remove lint ignore when our minimum video_player version >= 2.7
     // ignore: deprecated_member_use
-    final vpc = _vpc = lib.VideoPlayerController.network(widget.url);
+    final vpc = _vpc = lib.VideoPlayerController.network(widget.url, httpHeaders: widget.httpHeaders ?? {});
     Object? vpcError;
     try {
       await vpc.initialize();
